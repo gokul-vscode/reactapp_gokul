@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import "../Tabs/Tabs.css";
 import { BsCart2 } from "react-icons/bs";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
