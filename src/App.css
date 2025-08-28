@@ -27,6 +27,9 @@
 .App-link {
   color: #61dafb;
 }
+body {
+  font-family: 'Kumbh Sans', sans-serif;
+}
 
 @keyframes App-logo-spin {
   from {
