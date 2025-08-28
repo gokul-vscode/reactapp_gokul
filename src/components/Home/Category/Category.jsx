@@ -10,7 +10,6 @@ import office from "../../../assets/cls-electronic7.jpg";
 import { CiHeart } from "react-icons/ci";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
-import { IoIosStar } from "react-icons/io";
 import { motion } from "framer-motion";
 import electronicsData from "../../DataFolder/DataFile";
 import { useDispatch } from "react-redux";

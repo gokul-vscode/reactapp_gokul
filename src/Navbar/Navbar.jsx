@@ -8,7 +8,7 @@ import { ImCart } from "react-icons/im";
 import { FaTrashCan } from "react-icons/fa6";
 import { IoSearchOutline } from "react-icons/io5";
 import {useDispatch, useSelector} from "react-redux"
-import { addToCart,incrementQty,decrementQty,removeFromCart } from "../CartSlice/CartSlice";
+import { incrementQty,decrementQty,removeFromCart } from "../CartSlice/CartSlice";
 
 const CartComponent = () => {
 

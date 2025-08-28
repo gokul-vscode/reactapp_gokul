@@ -5,10 +5,8 @@ import { FiRefreshCcw } from "react-icons/fi";
 import { MdOutlineSecurity } from "react-icons/md";
 import { FaTruck } from "react-icons/fa6";
 import { HiRefresh } from "react-icons/hi";
-import sstv1 from '../../../assets/sstv1.jpeg'
 import { useSelector,useDispatch } from "react-redux";
 import electronicsData from '../../DataFolder/DataFile'
-import { decrementQty } from "../../../CartSlice/CartSlice";
 import { useParams } from "react-router-dom";
 
 

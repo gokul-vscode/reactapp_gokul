@@ -8,9 +8,6 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { motion } from "framer-motion";
-
-// import { FaLocationArrow } from "react-icons/fa";
-// import { IoSend } from "react-icons/io5";
 import { LuSendHorizontal } from "react-icons/lu";
 const Footer = () => {
   return (
