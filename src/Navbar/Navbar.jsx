@@ -1,5 +1,6 @@
 // import React from "react";
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import "../Navbar/Navbar.css";
 import logo from "../assets/logo-white.svg";
 import { CgProfile } from "react-icons/cg";
@@ -177,4 +178,6 @@ const CartComponent = () => {
 };
 
 export default CartComponent;
-// export { Counter };
+// import React, { useState } from "react";
+// import "../Navbar/Navbar.css";
+// import logo from "../assets/logo-white.svg";
