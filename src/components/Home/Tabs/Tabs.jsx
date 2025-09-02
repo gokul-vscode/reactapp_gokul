@@ -24,8 +24,8 @@ const Tabs = () => {
         return (
           <motion.div
             className="tab1"
-            initial={{ y: 100, Opacity: 0 }}
-            whileInView={{ y: 0, Opacity: 1 }}
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amont: 0.5 }}
           >
@@ -80,8 +80,8 @@ const Tabs = () => {
         return (
           <motion.div
             className="tab1"
-            initial={{ y: 100, Opacity: 0 }}
-            whileInView={{ y: 0, Opacity: 1 }}
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amont: 0.5 }}
           >
@@ -133,8 +133,8 @@ const Tabs = () => {
         return (
           <div
             className="tab1"
-            initial={{ y: 100, Opacity: 0 }}
-            whileInView={{ y: 0, Opacity: 1 }}
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amont: 0.5 }}
           >
