@@ -8,70 +8,120 @@ body {
   height: 100vh;
   /* overflow-x: hidden; */
 }
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* Parent container */
 .wholecategory {
   width: 100%;
-  height: 60%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  /* background-color: red; */
+  padding: 40px 0;
+  background-color: #fff;
 }
+
 .subcaregory {
   width: 85%;
-  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
-}
-.cathaed {
-  width: 100%;
-  height: 25%;
-  display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.cathaed {
   font-size: 40px;
   font-weight: 400;
+  margin-bottom: 30px;
 }
-.productparent {
+
+/* Grid view for desktop & iPad Mini */
+.productparent.grid-view {
   width: 100%;
-  height: 75%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  /* gap: 15px; */
-  background-color: rgb(255, 255, 255);
+  gap: 15px;
 }
+
 .productcard {
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  /* margin-top: 10px; */
-  /* background-color: rgb(248, 31, 31); */
-  /* gap: 50px; */
 }
+
 .productImg {
   width: 140px;
-  border-radius: 150px;
-  /* border-radius: 80px; */
+  border-radius: 50%;
+  transition: transform 0.3s ease;
 }
-.productImg:hover{
+
+.productImg:hover {
   transform: scale(1.1);
-  transition: 0.3s;
 }
+
 .catname {
   margin-top: 20px;
   font-weight: 500;
-  font-size: large;
+  font-size: 16px;
   cursor: pointer;
 }
+
 .catname:hover {
   color: red;
   transition: 0.5s ease-out;
 }
+
+/* Hide slider view on desktop */
+.slider-view {
+  display: none;
+}
+
+/* Responsive for iPad Mini */
+@media screen and (max-width: 834px) and (min-width: 768px) {
+  .productparent.grid-view {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .productImg {
+    width: 120px;
+  }
+  .cathaed {
+    font-size: 30px;
+  }
+}
+
+/* Mobile view */
+@media screen and (max-width: 767px) {
+  .productparent.grid-view {
+    display: none; /* hide desktop grid */
+  }
+  .slider-view {
+    display: block; /* show slider */
+    width: 100%;
+  }
+
+  .productcard {
+    flex: 0 0 auto;
+    width: 120px;
+    text-align: center;
+  }
+
+  .productImg {
+    width: 100px;
+  }
+
+  .catname {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .cathaed {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
 .wholecat2 {
   width: 100%;
   height: 70%;
@@ -185,15 +235,15 @@ body {
   transform: translateX(0); /* initial state */
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.cardimg:hover .overlay-icons p{
+.cardimg:hover .overlay-icons p {
   opacity: 1;
   transform: translateX(-15px);
 }
-.addcart{
+.addcart {
   position: absolute;
   bottom: 80;
 }
-.addcart-btns{
+.addcart-btns {
   width: 120px;
   height: 30px;
   border-radius: 20px;
@@ -204,146 +254,319 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
 }
-.addcart-btns:hover{
+.addcart-btns:hover {
   color: black;
   background-color: white;
   transition: 0.3s;
 }
-.cardimg:hover .addcart-btns{
+.cardimg:hover .addcart-btns {
   opacity: 1;
   transform: translateY(-15px);
 }
-.card-details{
+.card-details {
   width: 100%;
   height: 35%;
   text-decoration: none;
   color: black;
   /* background-color: red; */
 }
-.prodname{
+.prodname {
   margin-left: 10px;
   font-size: 13px;
   margin-top: 5px;
   /* font-size: 15px; */
 }
-.prodprice{
+.prodprice {
   font-size: 15px;
   font-weight: 600;
   margin-left: 10px;
   margin-top: 10px;
-
 }
-.stars{
+.stars {
   color: rgb(255, 230, 0);
   margin-left: 20px;
   font-size: 19px;
 }
+@media  (max-width: 768px) {
+  .productparent2{
+    grid-template-columns: repeat(3,1fr);
+  }
+  .wholecat2{
+    height:90%;
+    /* background-color: red; */
+  }
+}
+@media  (max-width: 450px){
+  .productparent2{
+    grid-template-columns: repeat(2,1fr);
+  }
+  .wholecat2{
+    height: 150%;
+  }
+  .productcard2{
+    width: 90%;
+  }
+  .cardimage1{
+    width: 150px;
+    height: 190px;
+  }
+  .cardimage2{
+    width: 150px;
+    height: 190px;
+  }
+}
+/* 🌐 Desktop View */
+/* ====== Base Layout ====== */
 .wholebanner {
   width: 100%;
-  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: red; */
 }
+
 .subbanner {
   width: 90%;
-  height: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top: 30px; */
-  /* background-color: blue; */
 }
+
 .bannerparent {
   width: 100%;
-  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* background-color: orangered; */
+  gap: 20px;
 }
+
+/* ====== Banner Card ====== */
 .bannercard {
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-color: red; */
   position: relative;
-  /* z-index: -1; */
-  /* overflow: hidden; */
-  /* gap: 20px; */
-  /* border-radius: 20px; */
-}
-.bannerimg {
-  width: 370px;
-  height: 290px;
-  /* margin-top: 20px; */
-  border-radius: 20px;
-  position: absolute;
   display: flex;
-  align-items: start;
-  justify-content: start;
-  overflow: hidden;
-  /* border: 1px solid rgb(123, 100, 187); */
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  justify-content: center;
+  align-items: center;
 }
+
+.bannerimg {
+  width: 100%;
+  max-width: 370px;
+  height: 290px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: transform 0.5s ease;
+}
+
 .bannerimg:hover {
   transform: scale(1.07);
-  transition: .5s;
-  /* overflow: hidden; */
 }
+
 .bannercontent {
-  width: 70%;
-  height: 60%;
-  display: flex;
-  /* align-items: start; */
-  flex-direction: column;
-  /* justify-content: start; */
   position: absolute;
-  top: 20px; /* Aligns it near the top */
+  top: 20px;
   left: 20px;
+  color: black;
 }
+
 .bannerhead {
-  width: 80%;
-  height: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  /* background-color: red; */
-  font-size: 26px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
+
 .bannertext {
-  text-align: left;
-  /* background-color: yellow; */
   font-size: 16px;
-  margin-top: 10px;
-  /* line-break: 10px; */
-  line-height: 1.6;
-  margin-left: 20px;
+  line-height: 1.4;
+  margin-bottom: 8px;
 }
 
 .bannershop {
-  margin-top: 10px;
-  margin-left: 20px;
   font-size: 18px;
-  cursor: pointer;
   font-weight: bold;
-  position: relative;
-  display: inline-block;
-
+  cursor: pointer;
   background: linear-gradient(to right, red 50%, black 50%);
   background-size: 200% 100%;
   background-position: 100% 0;
-
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   transition: background-position 0.8s ease-in-out;
 }
 
 .bannershop:hover {
   background-position: 0 0;
-  transition: 2s;
 }
+
+/* ====== Slider Arrows ====== */
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.banner-arrow.left {
+  left: -10px;
+}
+
+.banner-arrow.right {
+  right: -10px;
+}
+
+.banner-arrow:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+/* ====== Responsive ====== */
+
+/* 📱 iPad Mini (768px) */
+@media (max-width: 1024px) {
+  .bannerparent {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 10px 0;
+    scrollbar-width: none; /* Firefox */
+  }
+  .bannerparent::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .bannercard {
+    flex: 0 0 auto;
+    min-width: 60%;  /* iPad mini shows 1.5 cards */
+    scroll-snap-align: center;
+  }
+
+  .bannerimg {
+    height: 260px;
+  }
+
+  .bannerhead {
+    font-size: 20px;
+  }
+
+  .bannertext {
+    font-size: 14px;
+  }
+
+  .bannershop {
+    font-size: 16px;
+  }
+
+  .banner-arrow.left {
+    left: 5px;
+  }
+  .banner-arrow.right {
+    right: 5px;
+  }
+}
+
+/* 📱 Mobile (up to 600px) */
+@media (max-width: 600px) {
+  .bannerparent {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .bannercard {
+    flex: 0 0 auto;
+    min-width: 90%;  /* mobile shows 1 card */
+    scroll-snap-align: center;
+  }
+
+  .bannerimg {
+    height: 220px;
+    max-width: 100%;
+  }
+
+  .bannercontent {
+    top: 10px;
+    left: 15px;
+  }
+
+  .bannerhead {
+    font-size: 18px;
+  }
+
+  .bannertext {
+    font-size: 13px;
+  }
+
+  .bannershop {
+    font-size: 15px;
+  }
+}
+
+
+
+/* 
+@media (min-width: 768px) and (max-width: 834px) {
+  .productparent {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    line-height: 50px;
+  }
+  .wholecat2 {
+    width: 100%;
+    height: 90%;
+  }
+  .productparent2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    line-height: 10px;
+    gap: 30px !important;
+  }
+  .productcard2 {
+    width: 100%;
+  }
+  .cardimg {
+    height: 70%;
+  }
+  .cardimage1 {
+    width: 200px;
+    height: 210px;
+  }
+  .cardimage2 {
+    width: 200px;
+    height: 210px;
+  }
+  .card-details {
+    height: 30%;
+  }
+  .prodname {
+    font-size: 10px;
+    line-height: 10px;
+  }
+  .wholebanner{
+    height: 70%;
+  }
+  .bannerparent{
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+  }
+  .bannerimg{
+    width: 320px;
+    height: 280px;
+  }
+  .bannercontent{
+    margin-top: 20px;
+  }
+  .bannerhead{
+    font-size: 22px;
+  }
+  .bannertext{
+    font-size: 16px;
+  }
+} */

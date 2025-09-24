@@ -20,7 +20,7 @@ body {
 }
 .subarrival1 {
   width: 90%;
-  height: 100%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,11 +30,11 @@ body {
   /* background-color: red; */
 }
 .subarrival1 .active {
-  /* border-bottom: 5px solid #007bff; */
+  border-bottom: 5px solid #007bff;
   font-weight: bold;
-  color: white;
+  color: black;
   /* background-color: rgba(106, 148, 211,0.3); */
-  background: linear-gradient(to right, #1909aa, #5646ff, #4949cf);
+  /* background: linear-gradient(to right, #1909aa, #5646ff, #4949cf); */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   /* margin-bottom: 20px; */
@@ -217,4 +217,43 @@ p:hover .arr-icon {
 }
 .logo-cart:hover {
   color: green;
+}
+
+
+
+
+
+@media (min-width: 768px) and (max-width: 834px) {
+  .tab1{
+    height: 100vh;
+  }
+  .arrivalparent1{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width: 480px){
+  .arrivalparent1{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .tab1{
+    height: 140vh;
+  }
+  .arrimg11{
+    width: 100px;
+   height: 110px;
+  }
+   .arrimg21{
+    width: 100px;
+   height: 110px;
+  }
+  .textArrivals p{
+    font-size: 12px;
+  }
+  .Featuredproducts p{
+    font-size: 12px;
+  }
+  .love p{
+    font-size: 12px;
+
+  }
 }

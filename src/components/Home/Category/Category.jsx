@@ -1,4 +1,5 @@
 import React from "react";
+import { useRef } from "react";
 import "../Category/Category.css";
 import electronic from "../../../assets/cls-electronic1.jpg";
 import appliances from "../../../assets/cls-electronic2.jpg";
@@ -14,7 +15,14 @@ import { motion } from "framer-motion";
 import electronicsData from "../../DataFolder/DataFile";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../CartSlice/CartSlice";
+import { IoIosArrowDropleft } from "react-icons/io";
+import { IoIosArrowDropright } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const Category = () => {
   const dispatch = useDispatch();
@@ -22,6 +30,18 @@ const Category = () => {
   // const handleAddToCart = (product)=>{
   //   dispatch(addToCart(product))
   // }
+ const bannerRef = useRef(null);
+
+  const scrollBanner = (direction) => {
+    if (bannerRef.current) {
+      if (direction === "left") {
+        bannerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      } else {
+        bannerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      }
+    }
+  };
+
 
   const grid = [
     {
@@ -66,17 +86,13 @@ const Category = () => {
 
   return (
     <>
-      <motion.div
-        className="wholecat2"
-        initial={{ y: 40, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.5 }}
-      >
+      <div className="wholecat2">
         <div className="wholecategory">
           <div className="subcaregory">
             <h1 className="cathaed">Popular Categories</h1>
-            <div className="productparent">
+
+            {/* Desktop & iPad Mini Grid */}
+            <div className="productparent grid-view">
               {grid.map((data) => (
                 <div className="productcard" key={data.id}>
                   <img src={data.image} alt="" className="productImg" />
@@ -84,9 +100,34 @@ const Category = () => {
                 </div>
               ))}
             </div>
+
+            {/* Mobile Swiper Slider */}
+            <div className="productparent slider-view">
+              <Swiper
+                modules={[Navigation, Pagination]}
+                slidesPerView={2}
+                spaceBetween={15}
+                navigation
+                pagination={{ clickable: true }}
+                breakpoints={{
+                  450: { slidesPerView: 3, spaceBetween: 10 },
+                  768: { slidesPerView: 4, spaceBetween: 15 },
+                  1024: { slidesPerView: 7, spaceBetween: 15 },
+                }}
+              >
+                {grid.map((data) => (
+                  <SwiperSlide key={data.id}>
+                    <div className="productcard">
+                      <img src={data.image} alt="" className="productImg" />
+                      <p className="catname">{data.name}</p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
       <motion.div
         className="wholecat2"
         initial={{ y: 40, opacity: 0 }}
@@ -98,12 +139,13 @@ const Category = () => {
           <div className="dealhead">
             <p className="dealtext">Deal of the day</p>
           </div>
+
           <div className="productparent2">
             {filtered.map((data1) => (
               <div className="productcard2">
                 <div className="cardimg">
-                    <img src={data1.image} alt="" className="cardimage1" />
-                    <img src={data1.image2} alt="" className="cardimage2" />
+                  <img src={data1.image} alt="" className="cardimage1" />
+                  <img src={data1.image2} alt="" className="cardimage2" />
                   <div className="overlay-icons">
                     <p>
                       <CiHeart />
@@ -118,7 +160,7 @@ const Category = () => {
                   <div className="addcart">
                     <button
                       className="addcart-btns"
-                      onClick={() => {
+                      onClick={() =>
                         dispatch(
                           addToCart({
                             id: data1.id,
@@ -126,14 +168,15 @@ const Category = () => {
                             price: data1.price,
                             image: data1.image,
                           })
-                        );
-                      }}
+                        )
+                      }
                     >
                       ADD TO CART
                     </button>
                   </div>
                 </div>
-                <Link to={`/viewproduct/${data1.id}`} key={data1.id} className="card-details">
+
+                <Link to={`/viewproduct/${data1.id}`} className="card-details">
                   <p className="prodname">{data1.name}</p>
                   <p className="prodprice">${data1.price}</p>
                 </Link>
@@ -143,29 +186,38 @@ const Category = () => {
         </div>
       </motion.div>
       <motion.div
-        className="wholebanner"
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.5 }}
-      >
-        <div className="subbanner">
-          <div className="bannerparent">
-            {filtered1.map((data2) => (
-              <div className="bannercard" key={data2.id}>
-                <img src={data2.image} alt="" className="bannerimg" />
-                <div className="bannercontent">
-                  <h1 className="bannerhead">{data2.name}</h1>
-                  <p className="bannertext">{data2.content}</p>
-                  <p className="bannershop">{data2.shop}</p>
-                </div>
+      className="wholebanner"
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.5 }}
+    >
+      <div className="subbanner">
+        <button className="banner-arrow left" onClick={() => scrollBanner("left")}>
+          <IoIosArrowDropleft />
+        </button>
+
+        <div className="bannerparent" ref={bannerRef}>
+          {filtered1.map((data2) => (
+            <div className="bannercard" key={data2.id}>
+              <img src={data2.image} alt={data2.name} className="bannerimg" />
+              <div className="bannercontent">
+                <h1 className="bannerhead">{data2.name}</h1>
+                <p className="bannertext">{data2.content}</p>
+                <p className="bannershop">{data2.shop}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </motion.div>
+
+        <button className="banner-arrow right" onClick={() => scrollBanner("right")}>
+          <IoIosArrowDropright />
+        </button>
+      </div>
+    </motion.div>
     </>
   );
 };
 
 export default Category;
+

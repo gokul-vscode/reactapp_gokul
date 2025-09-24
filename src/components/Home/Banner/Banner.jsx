@@ -50,7 +50,7 @@ const Banner = () => {
           speed={1500}
         >
           {banners.map((data5) => (
-            <SwiperSlide key={banners.id}>
+            <SwiperSlide key={data5.id}>
               <div className="slideimg" key={data5.id}>
                 <img src={data5.image} alt="banner" className="slide-image" />
                 <motion.div

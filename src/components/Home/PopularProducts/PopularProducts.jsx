@@ -23,7 +23,7 @@ const PopularProducts = () => {
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amont: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
       >
         <div className="subcat3">
           <div className="dealhead3">
@@ -103,14 +103,15 @@ const PopularProducts = () => {
         </div>
       </motion.div>
 
-      <div className="headarrival">
+      {/* <div className="headarrival">
         <div className="subarrival">
           <div className="Featuredproducts">Featured products</div>
           <div className="textArrivals">New Arrivals</div>
           <div className="love">Maybe you will love</div>
         </div>
-      </div>
-
+      </div> */}
+<br />
+<br />
       <motion.div
         className="newarrivals"
         initial={{ y: 100, opacity: 0 }}
@@ -139,7 +140,8 @@ const PopularProducts = () => {
                     <p>{data4.name}</p>
                   </Link>
                   <div className="price-cart">
-                    <p className="prodprice5">{data4.price}</p>
+                    <p className="prodprice5">{data4.price} </p>
+                    <p className="heart-icon"><CiHeart /></p>
                     <p
                       className="cartlogo"
                       onClick={() => {
@@ -167,3 +169,5 @@ const PopularProducts = () => {
 };
 
 export default PopularProducts;
+
+

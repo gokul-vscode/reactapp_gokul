@@ -2,13 +2,12 @@ import React from "react";
 import { useState } from "react";
 import "../Tabs/Tabs.css";
 import { BsCart2 } from "react-icons/bs";
-import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { addToCart } from "../../../CartSlice/CartSlice";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import electronicsData from "../../DataFolder/DataFile";
-
+import { CiHeart } from "react-icons/ci";
 const Tabs = () => {
   const dispatch = useDispatch();
 
@@ -27,7 +26,7 @@ const Tabs = () => {
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amont: 0.5 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <div className="subnewarrivals1">
               <div className="arrivalparent1">
@@ -52,6 +51,7 @@ const Tabs = () => {
                         </Link>
                         <div className="price-cart1">
                           <p className="prodprice1">{data5.price}</p>
+                          <p className="heart-icon"><CiHeart /></p>
                           <p
                             className="logo-cart"
                             onClick={() => {
@@ -83,7 +83,7 @@ const Tabs = () => {
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amont: 0.5 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <div className="subnewarrivals1">
               <div className="arrivalparent1">
@@ -104,6 +104,7 @@ const Tabs = () => {
                         </Link>
                         <div className="price-cart1">
                           <p className="prodprice1">{data5.price}</p>
+                          <p className="heart-icon"><CiHeart /></p>
                           <p
                             className="logo-cart"
                             onClick={() => {
@@ -136,7 +137,7 @@ const Tabs = () => {
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amont: 0.5 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
             <div className="subnewarrivals1">
               <div className="arrivalparent1">
@@ -157,6 +158,7 @@ const Tabs = () => {
                         </Link>
                         <div className="price-cart1">
                           <p className="prodprice1">{data5.price}</p>
+                          <p className="heart-icon"><CiHeart /></p>
                           <p
                             className="logo-cart"
                             onClick={() => {
@@ -197,12 +199,7 @@ const Tabs = () => {
             }`}
             onClick={() => setActiveTab("featured")}
           >
-            <p>
-              Smart Gadgets
-              <span className="arr-icon">
-                <MdKeyboardDoubleArrowUp />
-              </span>
-            </p>
+            <p>Smart Gadgets</p>
           </div>
           <div
             className={`textArrivals ${
@@ -226,3 +223,5 @@ const Tabs = () => {
 };
 
 export default Tabs;
+
+

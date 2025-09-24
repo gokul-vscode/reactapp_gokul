@@ -8,6 +8,7 @@ import { HiRefresh } from "react-icons/hi";
 import { useSelector,useDispatch } from "react-redux";
 import electronicsData from '../../DataFolder/DataFile'
 import { useParams } from "react-router-dom";
+import PopularProducts from '../../../components/Home/PopularProducts/PopularProducts'
 
 
 
@@ -88,13 +89,14 @@ const ViewProduct = () => {
               </div>
             </div>
             <div className="security-delivery-return">
-              <p><MdOutlineSecurity /><span className="span-details">Security policy (edit with module Customer reassurance)</span></p>
+              <p ><MdOutlineSecurity /><span className="span-details">Security policy (edit with module Customer reassurance)</span></p>
               <p><FaTruck /><span className="span-details" >Delivery policy (edit with module Customer reassurance)</span></p>
               <p><HiRefresh /><span className="span-details">Return policy (edit with module Customer reassurance)</span></p>
             </div>
           </div>
         </div>
       </div>
+      <PopularProducts/>
     </>
   );
 };

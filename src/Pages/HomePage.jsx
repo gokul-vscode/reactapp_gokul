@@ -15,7 +15,7 @@ const HomePage = () => {
         <Category/>
         <PopularProducts/>
         <Tabs/>
-        {/* <ViewProduct/> */}
+        {/* <Checkout/> */}
        
     </>
   )

@@ -10,6 +10,8 @@ import { FaTrashCan } from "react-icons/fa6";
 import { IoSearchOutline } from "react-icons/io5";
 import {useDispatch, useSelector} from "react-redux"
 import { incrementQty,decrementQty,removeFromCart } from "../CartSlice/CartSlice";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const CartComponent = () => {
 
@@ -52,110 +54,150 @@ const CartComponent = () => {
         alert(`signing up as ${form.email}`)
       }
     };
-
+      const [showSearch, setShowSearch] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
-      <section className="wholenav">
-        <div className="subnav">
-          <div className="logo">
-            <img src={logo} alt="" />
+    {/* 🔹 TOP NAV */}
+      <section className="navbar">
+        <div className="nav-container">
+          {/* Logo */}
+          <div className="nav-logo">
+            <img src={logo} alt="Logo" />
           </div>
-          <div className="searchbar">
+
+          {/* Desktop Searchbar */}
+          <div className={`nav-search ${showSearch ? "active" : ""}`}>
             <input
-              type="search"
-              name="search"
-              placeholder="What are You Looking For Today "
-              className="search1"
-            /> <span className="search-icon"><IoSearchOutline /></span>
+              type="text"
+              placeholder="What are you looking for?"
+              className="nav-input"
+            />
           </div>
-          <div className="hotline">
-            <p>Hotline: +01 1234 8888 <br />24/7 Support Center</p>
+
+          {/* Hotline */}
+          <div className="nav-hotline">
+            <p>
+              Hotline: +01 1234 8888 <br />
+              24/7 Support Center
+            </p>
           </div>
-          <div className="icon">
-            <div className="inicon">
-              <div onClick={toggleForm} style={{cursor:"pointer"}}>
-                <CgProfile />
-              </div>
+
+          {/* Icons */}
+          <div className="nav-icons">
+            {/* 🔎 Standalone search toggle icon */}
+            <div
+              className="icon-btn search-toggle"
+              onClick={() => setShowSearch(!showSearch)}
+            >
+              <IoSearchOutline />
+            </div>
+
+            <div onClick={toggleForm} className="icon-btn">
+              <CgProfile />
+            </div>
+            <div className="icon-btn">
               <FaRegHeart />
-              <div onClick={toggleCart} style={{ cursor: "pointer" }}  className="cart-count">
-                <ImCart />
-                <p className="cart-notify">{cartItems.length}</p>
-              </div>
+            </div>
+            <div onClick={toggleCart} className="icon-btn cart">
+              <ImCart />
+              <span className="cart-badge">{cartItems.length}</span>
+            </div>
+
+            {/* Hamburger */}
+            <div
+              className="hamburger"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <GiHamburgerMenu />
             </div>
           </div>
         </div>
       </section>
-      <div className="wholenav2">
-        <div className="subnav2">
-          <div className="categories">
-            <p>Shop By Categories</p>
-          </div>
-          <div className="menus">
+
+      {/* 🔹 BOTTOM NAV */}
+      <section className="navbar-bottom">
+        <div className="bottom-container">
+          <div className="bottom-categories">Shop by Categories</div>
+          <div className={`bottom-menus ${menuOpen ? "open" : ""}`}>
             <p>Home</p>
             <p>Shop</p>
             <p>Product</p>
             <p>Blog</p>
             <p>Page</p>
-            <p>Buy THeme</p>
+            <p>Buy Theme</p>
           </div>
-          <div className="supersale">
-            <p>Super Sales</p>
-          </div>
+          <div className="bottom-sale">Super Sales</div>
         </div>
-      </div>
+      </section>
 
-      <div className={`main ${cartOpen ? 'cart-visible' : ''}`}>
-        <div className="wholecart">
-          <div className="subcart">
-            <div className="cart-btns">
-              <button>View Cart</button>
-              <button>CheckOut</button>
-            </div>
-            <div className="total-amt">
-              <p>TOTAL</p>
-              <p className="cart-ttl-amt">$. {totalAmount}</p>
-            </div>
+<div className={`cart-drawer ${cartOpen ? "open" : ""}`}>
+  {/* Overlay */}
+  <div className="cart-overlay" onClick={toggleCart}></div>
+
+  {/* Cart Content */}
+  <div className="cart-content">
+    {/* Close Icon */}
+    <div className="cart-close" onClick={toggleCart}>
+      &#10005; {/* Unicode X */}
+    </div>
+
+    {/* Header: Buttons & Total */}
+    <div className="cart-header">
+      <div className="cart-buttons">
+        <button className="view-cart-btn">View Cart</button>
+        <button className="checkout-btn">Checkout</button>
+      </div>
+      <div className="cart-total">
+        <span>TOTAL</span>
+        <span className="total-amount">$. {totalAmount}</span>
+      </div>
+    </div>
+
+    {/* Product List */}
+    <div className="cart-products">
+      {cartItems.map((item) => (
+        <div className="cart-product" key={item.id}>
+          <div className="product-img">
+            <img src={item.image} alt={item.name} />
           </div>
-        </div>
-        <div className="prod-container">
-        {cartItems.map((item)=>(  
-          <div className="sub-container" key={item.id}> 
-            <div className="img-container">
-              <img src={item.image} alt={item.name} />
-            </div>
-            <div className="prod-detail">
-              <div className="sub-detail">
-                <div className="prod-name-price">
-                  <div className="name-remover">
-                    <p className="name-cart">
-                     {item.name}
-                    </p>
-                    <p className="price-cart">$. {item.price}</p>
-                  </div>
-                  <div className="remove-icon" onClick={()=>dispatch(removeFromCart(item.id))}>
-                    <p>
-                      <FaTrashCan />
-                    </p>
-                  </div>
-                </div>
-                <div className="qty-total">
-                  <div className="inc-dec">
-                    <button className="dec" onClick={()=>dispatch(decrementQty(item.id))}>-</button>
-                    <label htmlFor="" className="labelbox">
-                      {item.quantity}
-                    </label>
-                    <button className="inc" onClick={()=>dispatch(incrementQty(item.id))}>+</button>
-                  </div>
-                  <div className="total-cart">
-                    <p>$. {item.price * item.quantity}</p>
-                  </div>
-                </div>
+          <div className="product-info">
+            <div className="product-header">
+              <p className="product-name">{item.name}</p>
+              <p className="product-price">$. {item.price}</p>
+              <div
+                className="remove-product"
+                onClick={() => dispatch(removeFromCart(item.id))}
+              >
+                <FaTrashCan />
               </div>
             </div>
+            <div className="product-qty">
+              <button
+                className="qty-btn"
+                onClick={() => dispatch(decrementQty(item.id))}
+              >
+                -
+              </button>
+              <span className="qty">{item.quantity}</span>
+              <button
+                className="qty-btn"
+                onClick={() => dispatch(incrementQty(item.id))}
+              >
+                +
+              </button>
+              <span className="product-total">
+                $. {item.price * item.quantity}
+              </span>
+            </div>
           </div>
-        ))}
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+
 
       <div className={`login-bg ${formOpen  ? "form-visible":""} `}>
         <div className="auth-container">
@@ -172,12 +214,8 @@ const CartComponent = () => {
       </div>
       </div>
 
-
-    </>
+</>
   );
 };
 
 export default CartComponent;
-// import React, { useState } from "react";
-// import "../Navbar/Navbar.css";
-// import logo from "../assets/logo-white.svg";
