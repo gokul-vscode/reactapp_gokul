@@ -11,7 +11,9 @@ import { IoSearchOutline } from "react-icons/io5";
 import {useDispatch, useSelector} from "react-redux"
 import { incrementQty,decrementQty,removeFromCart } from "../CartSlice/CartSlice";
 import { GiHamburgerMenu } from "react-icons/gi";
+import electronicsData from '../components/DataFolder/DataFile'
 import { Link } from "react-router-dom";
+import { TiDelete } from "react-icons/ti";
 
 const CartComponent = () => {
 
@@ -56,6 +58,26 @@ const CartComponent = () => {
     };
       const [showSearch, setShowSearch] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+
+
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+    const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+
+    if (value.trim() === "") {
+      setFilteredProducts([]);
+      return;
+    }
+        const results = electronicsData.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setFilteredProducts(results);
+  };
+
   return (
     <>
     {/* 🔹 TOP NAV */}
@@ -71,9 +93,27 @@ const CartComponent = () => {
             <input
               type="text"
               placeholder="What are you looking for?"
-              className="nav-input"
-            />
+              className="nav-input" value={searchValue} onChange={handleSearch}
+            /> <span  className="clear-icon" onClick={()=>{ setSearchValue(""); setFilteredProducts([]);}}><TiDelete /></span>
           </div>
+           {/* 🔍 Search Results Dropdown */}
+        {searchValue && filteredProducts.length > 0 && (
+          <div className="search-results">
+            {filteredProducts.map((product) => (
+              <Link to={`/viewproduct/${product.id}`} key={product.id} className="search-item">
+                <img src={product.image} alt={product.name} />
+                <p>{product.name}</p>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* ❌ No results Message */}
+        {searchValue && filteredProducts.length === 0 && (
+          <div className="search-results">
+            <p> No products found</p>
+          </div>
+        )}
 
           {/* Hotline */}
           <div className="nav-hotline">
@@ -213,6 +253,9 @@ const CartComponent = () => {
         </p>
       </div>
       </div>
+
+
+      
 
 </>
   );

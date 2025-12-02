@@ -97,7 +97,7 @@
   border-radius: 8px;
   overflow: hidden;
   flex: 1;
-  margin: 0 20px;
+  /* margin: 0 20px; */
   transition: all 0.3s ease;
 }
 .nav-input {
@@ -144,12 +144,18 @@
 
   .nav-search {
     display: none;
+    flex: none; 
   }
 
   .hamburger {
     display: block;
+    z-index: 999999;
+    display: block;
   }
-
+   .nav-icons  {
+    color: white !important;
+    /* background-color: red; */
+  }
   .bottom-menus {
     display: none;
     position: absolute;
@@ -179,6 +185,7 @@
 
   .hamburger {
     display: block;
+    z-index: 999999;
   }
 
   /* collapse menus */
@@ -206,21 +213,12 @@
     gap: 10px;
     font-size: 18px;
   }
+   .nav-icons svg {
+    color: white !important;
+  }
 
   /* YouTube-style search overlay */
-  .nav-search.active {
-    display: flex !important;
-    position: absolute;
-    top: 55px;
-    left: 0;
-    width: 100%;
-    background: #0c74d6;
-    padding: 10px;
-    z-index: 100;
-  }
-  .nav-input {
-    width: 85%;
-  }
+  
     .nav-search.active {
     display: flex !important;
     position: absolute;
@@ -230,6 +228,7 @@
     background: #0c74d6;
     padding: 10px;
     z-index: 100;
+    width: 350px;
   }
   .nav-input {
     width: 85%;
@@ -442,7 +441,7 @@
 /* ================= RESPONSIVE ================= */
 @media (max-width: 480px) {
   .cart-drawer {
-    width: 100%;
+    width: 400px;
   }
 
   .product-img img {
@@ -546,8 +545,97 @@
   text-decoration: underline;
   font-size: 1em;
 }
+.search-results {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 100;
+}
 
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
 
+.search-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
 
+.search-item:hover {
+  background: #f5f5f5;
+}
 
+.clear-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
 
+/* --------------------
+   Responsive CSS
+-------------------- */
+
+/* Tablets (max width 768px) */
+@media (max-width: 768px) {
+  .search-results {
+    width: 80%;  /* auto responsive width */
+    top: 65px;
+  }
+
+  .search-item img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Mobile (max width 480px) */
+@media (max-width: 480px) {
+  .search-results {
+    width: 90%;
+    top: 110px;
+    padding: 8px;
+    max-height: 250px;
+  }
+
+  .search-item {
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .search-item img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .clear-icon {
+    font-size: 18px;
+  }
+}
+
+/* Extra Small Phones (<350px) */
+@media (max-width: 350px) {
+  .search-results {
+    width: 95%;
+    max-height: 220px;
+  }
+
+  .search-item img {
+    width: 28px;
+    height: 28px;
+  }
+}

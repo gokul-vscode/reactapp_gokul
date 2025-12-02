@@ -93,10 +93,6 @@ import neck2 from "../../assets/neck2.jpeg";
 import noice1 from "../../assets/noice1.jpeg";
 import noice2 from "../../assets/noice2.jpeg";
 
-// import React, { useState } from "react";
-// import SearchBar from "./SearchBar";
-// import ProductList from "./ProductList";
-// import { electronicsData } from "./data"; // Assuming this is where your data is
 
 
 
